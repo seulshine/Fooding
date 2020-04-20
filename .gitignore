@@ -13,12 +13,13 @@
 
 # Java class files
 *.class
-
 # Generated files
 bin/
 gen/
 out/
 release/
+images/
+food-101/
 
 # Gradle files
 .gradle/
