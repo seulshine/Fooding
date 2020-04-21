@@ -4,14 +4,16 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import com.example.food.Adapter.KakaoSDKAdapter
 import com.example.food.util.Dlog
+import com.kakao.auth.KakaoSDK
 
 class Food : Application() {
     override fun onCreate() {
         super.onCreate()
 
         instance = this
-
+        KakaoSDK.init(KakaoSDKAdapter())
     }
 
     override fun onTerminate() {
