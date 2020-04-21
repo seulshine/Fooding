@@ -1,4 +1,4 @@
-package com.example.food
+package com.example.food.ui
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Base64.NO_WRAP
+import com.example.food.MainActivity
+import com.example.food.R
 import com.example.food.util.Dlog
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
