@@ -37,4 +37,11 @@ dependencies {
 
     implementation group: 'com.kakao.sdk', name: 'usermgmt', version: '1.27.0'
     implementation group: 'com.kakao.sdk', name: 'kakaotalk', version: '1.27.0'
+
+    // RecyclerView 라이브러리
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    // GSON 라이브러리
+    implementation 'com.google.code.gson:gson:2.8.5'
+    // Card 디자인 라이브러리
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
