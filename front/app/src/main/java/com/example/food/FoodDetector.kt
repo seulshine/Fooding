@@ -4,15 +4,16 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import com.example.food.Adapter.KakaoSDKAdapter
+import com.example.food.adapter.KakaoSDKAdapter
 import com.example.food.util.Dlog
 import com.kakao.auth.KakaoSDK
 
-class Food : Application() {
+class FoodDetector : Application() {
     override fun onCreate() {
         super.onCreate()
 
         instance = this
+        debug = isDebuggable(this)
         KakaoSDK.init(KakaoSDKAdapter())
     }
 
@@ -21,8 +22,8 @@ class Food : Application() {
         instance = null
     }
 
-    fun getFoodContext() : Food {
-        checkNotNull(instance) { "this application does not inherit com.moyo.PostMap" }
+    fun getFoodContext() : FoodDetector {
+        checkNotNull(instance) { "this application does not inherit com.example.food" }
         return instance!!
     }
 
@@ -41,7 +42,7 @@ class Food : Application() {
     }
 
     companion object {
-        var instance: Food? = null
-        var debug: Boolean? = null
+        var instance: FoodDetector? = null
+        var debug: Boolean = false
     }
 }

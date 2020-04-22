@@ -1,7 +1,7 @@
 package com.example.food.util
 
 import android.util.Log
-import com.example.food.Food
+import com.example.food.FoodDetector
 
 class Dlog {
 
@@ -15,23 +15,23 @@ class Dlog {
         }
 
         fun e(message: String) {
-            if (Food.debug!!) Log.e(tag, buildLogMsg(message))
+            if (FoodDetector.debug) Log.e(tag, buildLogMsg(message))
         }
 
         fun w(message: String) {
-            if (Food.debug!!) Log.w(tag, buildLogMsg(message))
+            if (FoodDetector.debug) Log.w(tag, buildLogMsg(message))
         }
 
         fun i(message: String) {
-            if (Food.debug!!) Log.i(tag, buildLogMsg(message))
+            if (FoodDetector.debug) Log.i(tag, buildLogMsg(message))
         }
 
         fun d(message: String) {
-            if (Food.debug!!) Log.d(tag, buildLogMsg(message))
+            if (FoodDetector.debug) Log.d(tag, buildLogMsg(message))
         }
 
         fun v(message: String) {
-            if (Food.debug!!) Log.v(tag, buildLogMsg(message))
+            if (FoodDetector.debug) Log.v(tag, buildLogMsg(message))
         }
     }
 }
