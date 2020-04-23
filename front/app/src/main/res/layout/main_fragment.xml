@@ -33,7 +33,6 @@
             android:text="2020.04.22"
             android:textScaleX="0.93"
             android:textSize="25sp"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toEndOf="@id/img_main_date_prev"
             app:layout_constraintTop_toTopOf="parent"
@@ -63,6 +62,183 @@
         app:layout_constraintTop_toBottomOf="@+id/layout_main_datepicker"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                app:layout_constraintBottom_toTopOf="@id/img_chart_background"
+                app:layout_constraintEnd_toEndOf="@id/img_chart_background">
+
+                <TextView
+                    android:id="@+id/tv_chart_current_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="7dp"
+                    android:text="1000"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBackground"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_chart_slash"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/tv_chart_kcal" />
+
+                <TextView
+                    android:id="@+id/tv_chart_slash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="7dp"
+                    android:text="/"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBackground"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_chart_user_set_calories"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_chart_kcal" />
+
+                <TextView
+                    android:id="@+id/tv_chart_user_set_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="7dp"
+                    android:text="2000"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorBackground"
+                    app:layout_constraintEnd_toStartOf="@id/tv_chart_kcal"
+                    app:layout_constraintBaseline_toBaselineOf="@id/tv_chart_kcal"/>
+
+                <TextView
+                    android:id="@+id/tv_chart_kcal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="kcal"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorBackground"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/img_chart_background"
+                android:layout_width="330dp"
+                android:layout_height="15dp"
+                android:src="@drawable/chart_background_rectangle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_bias="0.6"/>
+
+            <ImageView
+                android:id="@+id/img_chart_fill"
+                android:layout_width="33dp"
+                android:layout_height="15dp"
+                android:src="@drawable/chart_fill_rectangle"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/img_chart_background"
+                app:layout_constraintVertical_bias="0.6"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/img_chart_background">
+
+                <LinearLayout
+                    android:id="@+id/layout_chart_carb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="14dp"
+                    android:orientation="vertical"
+                    android:gravity="end"
+                    app:layout_constraintEnd_toStartOf="@id/layout_chart_pro"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_chart_carb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="탄수화물"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBackground" />
+
+                    <TextView
+                        android:id="@+id/tv_chart_crab_gram"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0g"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorBackground" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_chart_pro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="14dp"
+                    android:orientation="vertical"
+                    android:gravity="end"
+                    app:layout_constraintEnd_toStartOf="@id/layout_chart_fat"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_chart_pro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="단백질"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBackground" />
+
+                    <TextView
+                        android:id="@+id/tv_chart_pro_gram"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0g"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorBackground" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_chart_fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="end"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_chart_fat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="지방"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBackground" />
+
+                    <TextView
+                        android:id="@+id/tv_chart_fat_gram"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0g"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorBackground" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 

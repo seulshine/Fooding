@@ -23,13 +23,20 @@ import java.util.*
 class MainFragment : Fragment() {
     private lateinit var selectedDate: String
     private val calendar by lazy { Calendar.getInstance() }
+
     private var isFabOpen = false
     private val fabOpen by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_open) }
     private val fabClose by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_close) }
     private val fabRotate by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate) }
     private val fabRotateReversed by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate_reversed) }
+
     private val foodList by lazy { ArrayList<Meal>() }
     private val foodAdapter by lazy { FoodAdapter(requireContext(), foodList) }
+
+    private var calories = 0
+    private var carbohydrate = 0.0
+    private var protein = 0.0
+    private var fat = 0.0
 
     companion object {
         fun newInstance() = MainFragment()
@@ -70,10 +77,10 @@ class MainFragment : Fragment() {
         }
 
         img_main_date_prev.setOnClickListener {
-            changeCalendar(-1)
+            setCalendar(-1)
         }
         img_main_date_next.setOnClickListener {
-            changeCalendar(1)
+            setCalendar(1)
         }
 
         rec_main_food.apply {
@@ -100,12 +107,12 @@ class MainFragment : Fragment() {
             }
         }
 
-
+        setNutrition()
     }
 
     private fun getStringDate(): String = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
 
-    private fun changeCalendar(dayDifference: Int) {
+    private fun setCalendar(dayDifference: Int) {
         calendar.let {
             it.add(Calendar.DAY_OF_MONTH, dayDifference)
         }
@@ -124,5 +131,28 @@ class MainFragment : Fragment() {
             Food("식빵", 100.0, 100.0, 100.0, 100.0, "1조각 당")
         ))
         foodList.add(meal)
+    }
+
+    private fun calculateNutrition() {
+        calories = 0
+        carbohydrate = 0.0
+        protein = 0.0
+        fat = 0.0
+        foodList.forEach { meal ->
+            meal.foodList.forEach { food ->
+                calories += food.calories.toInt()
+                carbohydrate += food.carbohydrate
+                protein += food.protein
+                fat += food.fat
+            }
+        }
+    }
+
+    private fun setNutrition() {
+        calculateNutrition()
+        tv_chart_current_calories.text = "$calories"
+        tv_chart_crab_gram.text = "$carbohydrate g"
+        tv_chart_pro_gram.text = "$protein g"
+        tv_chart_fat_gram.text = "$fat g"
     }
 }
