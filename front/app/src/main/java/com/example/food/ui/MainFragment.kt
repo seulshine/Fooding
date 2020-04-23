@@ -7,8 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 
 import com.example.food.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.main_fragment.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,6 +19,9 @@ import java.util.*
 class MainFragment : Fragment() {
     private lateinit var selectedDate: String
     private val calendar by lazy { Calendar.getInstance() }
+    private var isFabOpen = false
+    private val fabOpen by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_open) }
+    private val fabClose by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_close) }
 
     companion object {
         fun newInstance() = MainFragment()
@@ -61,6 +67,21 @@ class MainFragment : Fragment() {
         img_main_date_next.setOnClickListener {
             changeCalendar(1)
         }
+
+        fab_main.setOnClickListener {
+            when (isFabOpen) {
+                true -> {
+                    setFabStatus(fab_add, false, fabClose)
+                    setFabStatus(fab_gallery, false, fabClose)
+                    setFabStatus(fab_camera, false, fabClose)
+                }
+                else -> {
+                    setFabStatus(fab_add, true, fabOpen)
+                    setFabStatus(fab_gallery, true, fabOpen)
+                    setFabStatus(fab_camera, true, fabOpen)
+                }
+            }
+        }
     }
 
     private fun getStringDate(): String = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
@@ -72,4 +93,9 @@ class MainFragment : Fragment() {
         tv_main_datetime_picker.text = getStringDate()
     }
 
+    private fun setFabStatus(fab: FloatingActionButton, isOpen: Boolean, anim: Animation) {
+        fab.startAnimation(anim)
+        fab.isClickable = isOpen
+        isFabOpen = isOpen
+    }
 }
