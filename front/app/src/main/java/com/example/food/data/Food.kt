@@ -1,10 +1,16 @@
 package com.example.food.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
+
+@Parcelize
 data class Food(
-    var name: String,
-    var calories: Double,
-    var carbohydrate: Double,
-    var protein: Double,
-    var fat: Double,
-    var standard: String
-)
+    val name: String,
+    val calories: Double,
+    val carbohydrate: Double,
+    val protein: Double,
+    val fat: Double,
+    val standard: String
+) : Parcelable

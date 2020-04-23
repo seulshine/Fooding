@@ -9,8 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.food.R
+import com.example.food.adapter.FoodAdapter
+import com.example.food.data.Food
+import com.example.food.data.Meal
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.main_fragment.*
 import java.text.SimpleDateFormat
@@ -24,6 +28,8 @@ class MainFragment : Fragment() {
     private val fabClose by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_close) }
     private val fabRotate by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate) }
     private val fabRotateReversed by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate_reversed) }
+    private val foodList by lazy { ArrayList<Meal>() }
+    private val foodAdapter by lazy { FoodAdapter(requireContext(), foodList) }
 
     companion object {
         fun newInstance() = MainFragment()
@@ -70,6 +76,13 @@ class MainFragment : Fragment() {
             changeCalendar(1)
         }
 
+        rec_main_food.apply {
+            val linearLayout = LinearLayoutManager(context)
+            layoutManager = linearLayout
+        }
+        addDummyData()
+        if (rec_main_food.adapter == null) rec_main_food.adapter = foodAdapter
+
         fab_main.setOnClickListener {
             when (isFabOpen) {
                 true -> {
@@ -86,6 +99,8 @@ class MainFragment : Fragment() {
                 }
             }
         }
+
+
     }
 
     private fun getStringDate(): String = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
@@ -101,5 +116,13 @@ class MainFragment : Fragment() {
         fab.startAnimation(anim)
         fab.isClickable = isOpen
         isFabOpen = isOpen
+    }
+
+    private fun addDummyData() {
+        val meal = Meal("아침식사", listOf(
+            Food("계란", 100.0, 100.0, 100.0, 100.0, "1개 당"),
+            Food("식빵", 100.0, 100.0, 100.0, 100.0, "1조각 당")
+        ))
+        foodList.add(meal)
     }
 }
