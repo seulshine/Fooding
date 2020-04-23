@@ -22,6 +22,8 @@ class MainFragment : Fragment() {
     private var isFabOpen = false
     private val fabOpen by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_open) }
     private val fabClose by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_close) }
+    private val fabRotate by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate) }
+    private val fabRotateReversed by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate_reversed) }
 
     companion object {
         fun newInstance() = MainFragment()
@@ -71,11 +73,13 @@ class MainFragment : Fragment() {
         fab_main.setOnClickListener {
             when (isFabOpen) {
                 true -> {
+                    fab_main.startAnimation(fabRotateReversed)
                     setFabStatus(fab_add, false, fabClose)
                     setFabStatus(fab_gallery, false, fabClose)
                     setFabStatus(fab_camera, false, fabClose)
                 }
                 else -> {
+                    fab_main.startAnimation(fabRotate)
                     setFabStatus(fab_add, true, fabOpen)
                     setFabStatus(fab_gallery, true, fabOpen)
                     setFabStatus(fab_camera, true, fabOpen)
