@@ -1,6 +1,6 @@
-package com.example.food.Adapter
+package com.example.food.adapter
 
-import com.example.food.Food
+import com.example.food.FoodDetector
 import com.kakao.auth.*
 
 class KakaoSDKAdapter : KakaoAdapter() {
@@ -18,5 +18,5 @@ class KakaoSDKAdapter : KakaoAdapter() {
         }
     }
 
-    override fun getApplicationConfig(): IApplicationConfig = IApplicationConfig { Food.instance?.getFoodContext() }
+    override fun getApplicationConfig(): IApplicationConfig = IApplicationConfig { FoodDetector.instance?.getFoodContext() }
 }

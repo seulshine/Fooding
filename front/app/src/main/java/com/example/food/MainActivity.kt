@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Base64.NO_WRAP
+import androidx.fragment.app.Fragment
+import com.example.food.ui.MainFragment
 import com.kakao.util.helper.Utility.getPackageInfo
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -17,10 +19,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        println(getHashKey(this))
+        moveToFragment(MainFragment())
     }
 
-    fun getHashKey(context: Context): String? {
+    private fun moveToFragment(fragment: Fragment) {
+        val fragmentTrans = supportFragmentManager.beginTransaction()
+        fragmentTrans.replace(R.id.fragment_container, fragment)
+        fragmentTrans.commit()
+    }
+
+    private fun getKakaoHashKey(context: Context): String? {
         try {
             if (Build.VERSION.SDK_INT >= 28) {
                 val packageInfo = getPackageInfo(context, PackageManager.GET_SIGNING_CERTIFICATES)
