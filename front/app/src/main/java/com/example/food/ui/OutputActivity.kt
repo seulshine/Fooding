@@ -58,10 +58,10 @@ class OutputActivity : AppCompatActivity() {
                         foodType="점심식사"
                     }
                     2   ->  {
-                        foodType="점심식사"
+                        foodType="저녁식사"
                     }
                     3   ->  {
-                        foodType="저녁식사"
+                        foodType="간식"
                     }
                     else -> {
                         foodType="아침식사"
