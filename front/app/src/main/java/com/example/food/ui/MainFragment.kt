@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.view.animation.DecelerateInterpolator
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.food.R
@@ -114,6 +115,10 @@ class MainFragment : Fragment() {
         }
 
         setNutrition()
+
+        img_chart_fill.setOnClickListener {
+            chartAnimation()
+        }
     }
 
     private fun getStringDate(): String = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
@@ -176,5 +181,13 @@ class MainFragment : Fragment() {
         tv_chart_crab_gram.text = "$carbohydrate g"
         tv_chart_pro_gram.text = "$protein g"
         tv_chart_fat_gram.text = "$fat g"
+    }
+
+    private fun chartAnimation() {
+        var dp = requireActivity().resources.displayMetrics.density
+
+        img_chart_fill.animate().scaleX(300 * dp).setDuration(1000L).withEndAction {
+            img_chart_fill.scaleX = 50 * dp
+        }.setInterpolator(DecelerateInterpolator()).start()
     }
 }
