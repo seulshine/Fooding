@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.food.R
 import com.example.food.adapter.FoodAdapter
-import com.example.food.data.Food
-import com.example.food.data.Meal
+import com.example.food.data.vo.Food
+import com.example.food.data.vo.Meal
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.text.SimpleDateFormat
@@ -132,10 +132,26 @@ class MainFragment : Fragment() {
     }
 
     private fun addDummyData() {
-        val meal = Meal("아침식사", listOf(
-            Food("계란", 100.0, 100.0, 100.0, 100.0, "1개 당"),
-            Food("식빵", 100.0, 100.0, 100.0, 100.0, "1조각 당")
-        ))
+        val meal = Meal(
+            "아침식사", listOf(
+                Food(
+                    "계란",
+                    100.0,
+                    100.0,
+                    100.0,
+                    100.0,
+                    "1개 당"
+                ),
+                Food(
+                    "식빵",
+                    100.0,
+                    100.0,
+                    100.0,
+                    100.0,
+                    "1조각 당"
+                )
+            )
+        )
         foodList.add(meal)
     }
 
