@@ -109,7 +109,7 @@ class MainFragment : Fragment() {
         }
 
         fab_camera.setOnClickListener {
-            val intent = Intent(context, OutputActivity::class.java)
+            val intent = Intent(context, Output2Activity::class.java)
             startActivity(intent)
         }
 
