@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.food.R
 import com.example.food.vo.FoodInfo
 import kotlinx.android.synthetic.main.item_info.view.*
+import kotlinx.android.synthetic.main.item_nutrition.view.*
 
 class NutritionAdapter: RecyclerView.Adapter<NutritionAdapter.MainViewHolder>() {
     var items: MutableList<FoodInfo> = mutableListOf(
@@ -31,8 +32,8 @@ class NutritionAdapter: RecyclerView.Adapter<NutritionAdapter.MainViewHolder>() 
     }
 
     inner class MainViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_info, parent, false)) {
-        val tvTitle = itemView.tv_main_title
-        val tvContent = itemView.tv_main_content
+        LayoutInflater.from(parent.context).inflate(R.layout.item_nutrition, parent, false)) {
+        val tvTitle = itemView.tv_title
+        val tvContent = itemView.tv_content
     }
 }

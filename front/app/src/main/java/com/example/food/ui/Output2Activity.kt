@@ -8,23 +8,24 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.recyclerview.widget.*
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.food.Adapter.InfoAdapter
 import com.example.food.Adapter.NutritionAdapter
 import com.example.food.R
 
 
-class OutputActivity : AppCompatActivity() {
+class Output2Activity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_output)
+        setContentView(R.layout.activity_output2)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = NutritionAdapter() // 이후 paraemter로 data 넘겨줌
+        viewAdapter = InfoAdapter() // 이후 paraemter로 data 넘겨줌
 
-        recyclerView = findViewById<RecyclerView>(R.id.rv_nutrition_list).apply {
+        recyclerView = findViewById<RecyclerView>(R.id.rv_info_list).apply {
             // use this setting to improve performance if you know that changes
             // in content do not change the layout size of the RecyclerView
             setHasFixedSize(true)
@@ -68,10 +69,12 @@ class OutputActivity : AppCompatActivity() {
                     }
                 }
             }
+
             override fun onNothingSelected(parent: AdapterView<*>) {
 
             }
         }
+
 
     }
 

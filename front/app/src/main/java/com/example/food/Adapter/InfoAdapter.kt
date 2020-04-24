@@ -11,9 +11,9 @@ import kotlinx.android.synthetic.main.item_info.view.*
 
 class InfoAdapter: RecyclerView.Adapter<InfoAdapter.MainViewHolder>() {
     var items: MutableList<FoodInfo2> = mutableListOf(
-        FoodInfo2("김치찌개", "128kcal", "1", "128kcal"),
-        FoodInfo2("계란", "77kcal", "2", "154kcal"),
-        FoodInfo2("밥", "263kcal", "1", "263kcal")
+        FoodInfo2("김치찌개", "128kcal", "128kcal"),
+        FoodInfo2("계란", "77kcal",  "154kcal"),
+        FoodInfo2("밥", "263kcal",  "263kcal")
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = MainViewHolder(parent)
@@ -26,7 +26,6 @@ class InfoAdapter: RecyclerView.Adapter<InfoAdapter.MainViewHolder>() {
             with(holer) {
                 tvName.text = item.name
                 tvCalorie.text = item.calorie
-                tvQuantity.text = item.quantity
                 tvTotal.text = item.totalCalorie
             }
         }
@@ -36,7 +35,6 @@ class InfoAdapter: RecyclerView.Adapter<InfoAdapter.MainViewHolder>() {
         LayoutInflater.from(parent.context).inflate(R.layout.item_info, parent, false)) {
         var tvName = itemView.tv_name
         var tvCalorie = itemView.tv_calorie
-        var tvQuantity = itemView.tv_each_quantity
         var tvTotal = itemView.tv_total_calorie
     }
 }

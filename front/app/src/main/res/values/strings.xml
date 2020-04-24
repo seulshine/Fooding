@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">food</string>
+    <string-array name="type_array">
+        <item>아침식사</item>
+        <item>점심식사</item>
+        <item>저녁식사</item>
+        <item>간식</item>
+    </string-array>
 </resources>
