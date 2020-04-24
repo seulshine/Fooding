@@ -1,6 +1,7 @@
 package com.example.food.ui
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,7 +17,7 @@ import com.example.food.adapter.FoodAdapter
 import com.example.food.data.Food
 import com.example.food.data.Meal
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.android.synthetic.main.fragment_main.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -48,7 +49,7 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -105,6 +106,11 @@ class MainFragment : Fragment() {
                     setFabStatus(fab_camera, true, fabOpen)
                 }
             }
+        }
+
+        fab_camera.setOnClickListener {
+            val intent = Intent(context, OutputActivity::class.java)
+            startActivity(intent)
         }
 
         setNutrition()

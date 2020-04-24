@@ -48,4 +48,9 @@ dependencies {
 
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'com.thoughtbot:expandablerecyclerview:1.3'
+
+    // GSON 라이브러리
+    implementation 'com.google.code.gson:gson:2.8.5'
+    // Card 디자인 라이브러리
+    implementation 'androidx.cardview:cardview:1.0.0'
 }

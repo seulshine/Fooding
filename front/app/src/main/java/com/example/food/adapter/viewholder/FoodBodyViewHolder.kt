@@ -1,6 +1,5 @@
 package com.example.food.adapter.viewholder
 
-import android.view.View
 import android.view.ViewGroup
 import com.example.food.R
 import com.example.food.data.Food
