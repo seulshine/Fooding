@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.ViewGroup
 import com.example.food.adapter.viewholder.FoodBodyViewHolder
 import com.example.food.adapter.viewholder.FoodHeaderViewHolder
-import com.example.food.data.Food
-import com.example.food.data.Meal
+import com.example.food.data.vo.Food
+import com.example.food.data.vo.Meal
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder

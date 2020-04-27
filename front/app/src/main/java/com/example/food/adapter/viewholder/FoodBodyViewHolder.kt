@@ -2,7 +2,7 @@ package com.example.food.adapter.viewholder
 
 import android.view.ViewGroup
 import com.example.food.R
-import com.example.food.data.Food
+import com.example.food.data.vo.Food
 import com.example.food.util.inflate
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder
 import kotlinx.android.synthetic.main.item_main_food_body.view.*
