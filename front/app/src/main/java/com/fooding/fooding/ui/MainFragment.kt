@@ -3,15 +3,13 @@ package com.fooding.fooding.ui
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.view.animation.DecelerateInterpolator
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.fooding.fooding.R
 import com.fooding.fooding.adapter.FoodAdapter
 import com.fooding.fooding.data.vo.Food
@@ -112,7 +110,7 @@ class MainFragment : Fragment() {
 
         setNutrition()
 
-        chartAnimation(calories, 1000)
+        chartAnimation(calories.toFloat(), 1000f)
     }
 
     private fun getStringDate(): String = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
@@ -177,11 +175,10 @@ class MainFragment : Fragment() {
         tv_chart_fat_gram.text = "$fat g"
     }
 
-    private fun chartAnimation(eaten: Int, target: Int) {
-        val ratio = if (eaten / target > 1) 1f else (eaten / target).toFloat()
+    private fun chartAnimation(eaten: Float, target: Float) {
+        val ratio: Float = if (eaten / target > 1) 1f else (eaten / target)
+        val dp = context!!.resources.displayMetrics.density
 
-        img_chart_fill.animate().scaleX(100f).setInterpolator(DecelerateInterpolator()).setDuration(1500L).withEndAction {
-            img_chart_fill.scaleX = ratio
-        }
+        img_chart_fill.layoutParams.width = (330 * ratio * dp).toInt()
     }
 }

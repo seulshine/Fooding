@@ -7,9 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Base64
 import android.util.Base64.NO_WRAP
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
 import com.fooding.fooding.ui.MainFragment
 import com.kakao.util.helper.Utility.getPackageInfo
+import kotlinx.android.synthetic.main.activity_main.*
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -19,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(toolbar_main)
         moveToFragment(MainFragment())
     }
 
@@ -26,6 +35,18 @@ class MainActivity : AppCompatActivity() {
         val fragmentTrans = supportFragmentManager.beginTransaction()
         fragmentTrans.replace(R.id.fragment_container, fragment)
         fragmentTrans.commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_edit_profile -> { Toast.makeText(applicationContext, "프로필 수정", Toast.LENGTH_SHORT).show() }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun getKakaoHashKey(context: Context): String? {

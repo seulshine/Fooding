@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">food</string>
+    <string name="app_name">Fooding</string>
     <string-array name="type_array">
         <item>아침식사</item>
         <item>점심식사</item>
