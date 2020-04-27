@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fooding.fooding.R
 import com.fooding.fooding.adapter.FoodAdapter
 import com.fooding.fooding.data.vo.Food
-import com.fooding.fooding.data.vo.Meal
+import com.fooding.fooding.data.vo.Menu
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.text.SimpleDateFormat
@@ -29,10 +29,10 @@ class MainFragment : Fragment() {
     private val fabRotate by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate) }
     private val fabRotateReversed by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate_reversed) }
 
-    private val foodList by lazy { ArrayList<Meal>() }
+    private val foodList by lazy { ArrayList<Menu>() }
     private val foodAdapter by lazy { FoodAdapter(requireContext(), foodList) }
 
-    private var calories = 0
+    private var calories = 0.0
     private var carbohydrate = 0.0
     private var protein = 0.0
     private var fat = 0.0
@@ -110,7 +110,9 @@ class MainFragment : Fragment() {
 
         setNutrition()
 
-        chartAnimation(calories.toFloat(), 1000f)
+        img_chart_fill.setOnClickListener {
+            chartAnimation(calories.toFloat(), 1000f)
+        }
     }
 
     private fun getStringDate(): String = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
@@ -129,7 +131,7 @@ class MainFragment : Fragment() {
     }
 
     private fun addDummyData() {
-        val meal = Meal(
+        val meal = Menu(
             "아침식사", listOf(
                 Food(
                     "계란",
@@ -149,11 +151,32 @@ class MainFragment : Fragment() {
                 )
             )
         )
+        val meal2 = Menu(
+            "점심식사", listOf(
+                Food(
+                    "계란",
+                    100.0,
+                    100.0,
+                    100.0,
+                    100.0,
+                    "1개 당"
+                ),
+                Food(
+                    "식빵",
+                    100.0,
+                    100.0,
+                    100.0,
+                    100.0,
+                    "1조각 당"
+                )
+            )
+        )
         foodList.add(meal)
+        foodList.add(meal2)
     }
 
     private fun calculateNutrition() {
-        calories = 0
+        calories = 0.0
         carbohydrate = 0.0
         protein = 0.0
         fat = 0.0
@@ -177,8 +200,9 @@ class MainFragment : Fragment() {
 
     private fun chartAnimation(eaten: Float, target: Float) {
         val ratio: Float = if (eaten / target > 1) 1f else (eaten / target)
-        val dp = context!!.resources.displayMetrics.density
+        val dp = requireContext().resources.displayMetrics.density
 
         img_chart_fill.layoutParams.width = (330 * ratio * dp).toInt()
+        img_chart_fill.requestLayout()
     }
 }
