@@ -1,4 +1,4 @@
-package com.example.food.data
+package com.example.food.data.vo
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

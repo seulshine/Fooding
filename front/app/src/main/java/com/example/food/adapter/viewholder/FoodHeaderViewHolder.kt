@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.RotateAnimation
 import com.example.food.R
-import com.example.food.data.Meal
+import com.example.food.data.vo.Meal
 import com.example.food.util.inflate
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder
 import kotlinx.android.synthetic.main.item_main_food_header.view.*
