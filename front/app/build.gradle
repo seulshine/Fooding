@@ -21,7 +21,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug{
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -63,4 +63,9 @@ dependencies {
     // ui
     implementation "androidx.cardview:cardview:1.0.0"
     implementation 'com.thoughtbot:expandablerecyclerview:1.3'
+
+
+    // camera image upload
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'gun0912.ted:tedpermission:2.2.3'
 }
