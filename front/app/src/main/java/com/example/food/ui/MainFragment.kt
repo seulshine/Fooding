@@ -2,7 +2,6 @@ package com.example.food.ui
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,7 +32,7 @@ class MainFragment : Fragment() {
     private val fabRotateReversed by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate_reversed) }
 
     private val foodList by lazy { ArrayList<Meal>() }
-    private val foodAdapter by lazy { FoodAdapter(requireContext(), foodList) }
+//    private val foodAdapter by lazy { FoodAdapter(requireContext(), foodList) }
 
     private var calories = 0
     private var carbohydrate = 0.0
@@ -44,8 +43,6 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,7 +52,6 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         tv_main_datetime_picker.text = getStringDate()
 
@@ -90,7 +86,7 @@ class MainFragment : Fragment() {
             layoutManager = linearLayout
         }
         addDummyData()
-        if (rec_main_food.adapter == null) rec_main_food.adapter = foodAdapter
+        if (rec_main_food.adapter == null) rec_main_food.adapter = FoodAdapter(requireContext(), foodList)
 
         fab_main.setOnClickListener {
             when (isFabOpen) {
@@ -116,9 +112,7 @@ class MainFragment : Fragment() {
 
         setNutrition()
 
-        img_chart_fill.setOnClickListener {
-            chartAnimation()
-        }
+        chartAnimation(calories, 1000)
     }
 
     private fun getStringDate(): String = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
@@ -183,11 +177,11 @@ class MainFragment : Fragment() {
         tv_chart_fat_gram.text = "$fat g"
     }
 
-    private fun chartAnimation() {
-        var dp = requireActivity().resources.displayMetrics.density
+    private fun chartAnimation(eaten: Int, target: Int) {
+        val ratio = if (eaten / target > 1) 1f else (eaten / target).toFloat()
 
-        img_chart_fill.animate().scaleX(300 * dp).setDuration(1000L).withEndAction {
-            img_chart_fill.scaleX = 50 * dp
+        img_chart_fill.animate().scaleX(0f).setDuration(1500L).withEndAction {
+            img_chart_fill.scaleX = ratio
         }.setInterpolator(DecelerateInterpolator()).start()
     }
 }

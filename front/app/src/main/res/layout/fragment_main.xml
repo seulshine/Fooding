@@ -136,7 +136,7 @@
 
             <ImageView
                 android:id="@+id/img_chart_fill"
-                android:layout_width="33dp"
+                android:layout_width="330dp"
                 android:layout_height="15dp"
                 android:src="@drawable/chart_fill_rectangle"
                 app:layout_constraintTop_toTopOf="parent"
