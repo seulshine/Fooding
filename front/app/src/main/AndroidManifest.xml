@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.LoginActivity"></activity>
-        <activity android:name=".ui.ImageActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +32,8 @@
         </activity>
         <activity android:name=".ui.OutputActivity"></activity>
         <activity android:name=".ui.Output2Activity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name="com.example.food.ui.ImageActivity"></activity>
+
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -41,7 +42,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.food.fileprovider"
+            android:authorities="com.example.food.ui.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
