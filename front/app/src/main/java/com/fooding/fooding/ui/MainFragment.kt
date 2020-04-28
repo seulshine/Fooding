@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fooding.fooding.R
 import com.fooding.fooding.adapter.FoodAdapter
-import com.fooding.fooding.data.vo.Food
-import com.fooding.fooding.data.vo.Menu
+import com.fooding.fooding.data.vo.Meal
+import com.fooding.fooding.ui.manager.MainManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.text.SimpleDateFormat
@@ -29,7 +29,7 @@ class MainFragment : Fragment() {
     private val fabRotate by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate) }
     private val fabRotateReversed by lazy { AnimationUtils.loadAnimation(context, R.anim.fab_rotate_reversed) }
 
-    private val foodList by lazy { ArrayList<Menu>() }
+    private val foodList by lazy { ArrayList<Meal>() }
     private val foodAdapter by lazy { FoodAdapter(requireContext(), foodList) }
 
     private var calories = 0.0
@@ -113,6 +113,8 @@ class MainFragment : Fragment() {
         img_chart_fill.setOnClickListener {
             chartAnimation(calories.toFloat(), 1000f)
         }
+
+        MainManager().getMenuList("unsug@102")
     }
 
     private fun getStringDate(): String = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)

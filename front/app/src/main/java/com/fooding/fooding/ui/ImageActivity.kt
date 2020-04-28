@@ -1,8 +1,7 @@
-package com.example.food.ui
+package com.fooding.fooding.ui
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -143,7 +142,9 @@ class ImageActivity : AppCompatActivity() {
     private fun launchGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
+        startActivityForResult(intent,
+            IMAGE_PICK_CODE
+        )
     }
 
     private fun uploadImage() {
@@ -160,7 +161,11 @@ class ImageActivity : AppCompatActivity() {
         ) {
             override fun getByteData(): MutableMap<String, FileDataPart> {
                 var params = HashMap<String, FileDataPart>()
-                params["imageFile"] = FileDataPart("image", imageData!!, "jpeg")
+                params["imageFile"] = FileDataPart(
+                    "image",
+                    imageData!!,
+                    "jpeg"
+                )
                 return params
             }
         }

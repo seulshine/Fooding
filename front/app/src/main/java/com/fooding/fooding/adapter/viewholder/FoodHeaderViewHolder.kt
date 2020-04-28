@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import android.view.animation.Animation.RELATIVE_TO_SELF
 import android.view.animation.RotateAnimation
 import com.fooding.fooding.R
-import com.fooding.fooding.data.vo.Menu
+import com.fooding.fooding.data.vo.Meal
 import com.fooding.fooding.util.inflate
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder
 import kotlinx.android.synthetic.main.item_main_food_header.view.*
@@ -16,7 +16,7 @@ class FoodHeaderViewHolder(private val parent: ViewGroup) :
     private val totalCalories = itemView.tv_main_total_calories
     private val foodExpandButton = itemView.img_main_meal_expand
 
-    fun bind(menuItem: Menu) {
+    fun bind(menuItem: Meal) {
         mealName.text = menuItem.type
         totalCalories.text = menuItem.foodList.sumByDouble { it.cal }.toString()
     }
