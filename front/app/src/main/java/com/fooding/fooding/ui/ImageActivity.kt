@@ -1,8 +1,7 @@
-package com.example.food.ui
+package com.fooding.fooding.ui
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -17,7 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
-import com.example.food.R
+import com.fooding.fooding.R
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
 import java.io.File
@@ -142,7 +141,9 @@ class ImageActivity : AppCompatActivity() {
     private fun launchGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_PICK_CODE)
+        startActivityForResult(intent,
+            IMAGE_PICK_CODE
+        )
     }
 
     private fun uploadImage() {
@@ -159,7 +160,11 @@ class ImageActivity : AppCompatActivity() {
         ) {
             override fun getByteData(): MutableMap<String, FileDataPart> {
                 var params = HashMap<String, FileDataPart>()
-                params["imageFile"] = FileDataPart("image", imageData!!, "jpeg")
+                params["imageFile"] = FileDataPart(
+                    "image",
+                    imageData!!,
+                    "jpeg"
+                )
                 return params
             }
         }

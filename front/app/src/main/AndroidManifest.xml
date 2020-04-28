@@ -22,14 +22,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.LoginActivity"></activity>
-        <activity android:name=".ui.ImageActivity">
+        <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        <activity android:name=".ui.ImageActivity">-->
+<!--        </activity>-->
         <activity android:name=".ui.OutputActivity"></activity>
         <activity android:name=".ui.Output2Activity"></activity>
         <activity android:name=".MainActivity"></activity>
@@ -39,15 +40,15 @@
             android:value="@string/kakao_app_key" />
 
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.food.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
-        </provider>
+<!--        <provider-->
+<!--            android:name="androidx.core.content.FileProvider"-->
+<!--            android:authorities="com.example.food.fileprovider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
+<!--                android:resource="@xml/file_paths"></meta-data>-->
+<!--        </provider>-->
 
     </application>
 
