@@ -1,11 +1,13 @@
 package com.fooding.fooding.data.vo
 
 import android.os.Parcelable
-import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Menu(
-    val type: String,
-    var foodList: List<Food>
-) : Parcelable, ExpandableGroup<Food>(type, foodList)
+    val id: Int,
+    val user: String,
+    val foods: List<Food>,
+    val time: String,
+    val created_at: String? = null
+) : Parcelable
