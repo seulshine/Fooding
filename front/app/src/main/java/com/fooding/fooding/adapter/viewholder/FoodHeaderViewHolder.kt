@@ -18,7 +18,7 @@ class FoodHeaderViewHolder(private val parent: ViewGroup) :
 
     fun bind(menuItem: Menu) {
         mealName.text = menuItem.type
-        totalCalories.text = menuItem.foodList.sumByDouble { it.calories }.toString()
+        totalCalories.text = menuItem.foodList.sumByDouble { it.cal }.toString()
     }
 
     override fun expand() {

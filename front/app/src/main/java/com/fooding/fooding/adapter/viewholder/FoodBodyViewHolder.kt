@@ -15,6 +15,6 @@ class FoodBodyViewHolder(private val parent: ViewGroup) : ChildViewHolder(parent
 
     fun bind(foodItem: Food) {
         foodName.text = foodItem.name
-        foodCalories.text = foodItem.calories.toString()
+        foodCalories.text = foodItem.cal.toString()
     }
 }

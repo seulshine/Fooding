@@ -131,48 +131,7 @@ class MainFragment : Fragment() {
     }
 
     private fun addDummyData() {
-        val meal = Menu(
-            "아침식사", listOf(
-                Food(
-                    "계란",
-                    100.0,
-                    100.0,
-                    100.0,
-                    100.0,
-                    "1개 당"
-                ),
-                Food(
-                    "식빵",
-                    100.0,
-                    100.0,
-                    100.0,
-                    100.0,
-                    "1조각 당"
-                )
-            )
-        )
-        val meal2 = Menu(
-            "점심식사", listOf(
-                Food(
-                    "계란",
-                    100.0,
-                    100.0,
-                    100.0,
-                    100.0,
-                    "1개 당"
-                ),
-                Food(
-                    "식빵",
-                    100.0,
-                    100.0,
-                    100.0,
-                    100.0,
-                    "1조각 당"
-                )
-            )
-        )
-        foodList.add(meal)
-        foodList.add(meal2)
+
     }
 
     private fun calculateNutrition() {
@@ -182,9 +141,9 @@ class MainFragment : Fragment() {
         fat = 0.0
         foodList.forEach { meal ->
             meal.foodList.forEach { food ->
-                calories += food.calories.toInt()
-                carbohydrate += food.carbohydrate
-                protein += food.protein
+                calories += food.cal.toInt()
+                carbohydrate += food.carb
+                protein += food.proteins
                 fat += food.fat
             }
         }
