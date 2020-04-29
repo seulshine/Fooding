@@ -17,8 +17,8 @@ class MainManager : CoroutineScope {
     fun getMenuList(pathVariable: String) {
         CoroutineScope(coroutineContext).launch {
             try {
-                val response = RestApi().getMenu(pathVariable)
-                println(response)
+//                val response = RestApi().getMenu(pathVariable)
+//                println(response)
             } catch (e: Exception) {
                 Dlog.e(e.message.toString())
             }
