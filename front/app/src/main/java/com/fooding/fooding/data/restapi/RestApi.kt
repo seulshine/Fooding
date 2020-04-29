@@ -25,7 +25,7 @@ class RestApi {
         userService = retrofit.create()
     }
 
-    suspend fun postMenu(requestBody: PostMenu) : HashMap<String, Any> {
+    suspend fun postMenu(requestBody: PostMenu) : HashMap<Any, Any> {
         Dlog.d("here")
         return menuService.postDeferredMenuAsync(requestBody).await()
     }

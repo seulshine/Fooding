@@ -20,6 +20,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class Output2Activity : AppCompatActivity() {
@@ -52,8 +54,9 @@ class Output2Activity : AppCompatActivity() {
         uploadButton = findViewById(R.id.btn_upload)
         uploadButton.setOnClickListener{
             var foods = ArrayList<PostFood>()
+            var datestr = simpleDate.format(Calendar.getInstance().getTime());
             foods.add(PostFood("치킨", 360.0, 20.0, 20.0, 20.0))
-            var temp = PostMenu("test", simpleDate.toString(), foodType, foods)
+            var temp = PostMenu("unsug@102", foodType, datestr, foods)
 
             Dlog.d("여기까지 들어오나")
 
@@ -101,7 +104,7 @@ class Output2Activity : AppCompatActivity() {
     }
 
     private fun requestMenu(requestBody: PostMenu) {
-
+        Dlog.d(requestBody.toString())
         runBlocking {
             CoroutineScope(coroutineContext).launch {
                 try {

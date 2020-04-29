@@ -13,7 +13,7 @@ data class PostMenu(
 
 @Parcelize
 data class PostFood(
-    val foodname: String,
+    val foodName: String,
     val cal: Double,
     val carbs: Double,
     val fats: Double,
