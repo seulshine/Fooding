@@ -4,9 +4,8 @@ import com.fooding.fooding.data.service.MenuService
 import com.fooding.fooding.data.service.UserService
 import com.fooding.fooding.data.vo.GetMenu
 import com.fooding.fooding.data.vo.PostMenu
-import com.fooding.fooding.util.Dlog
+import com.fooding.fooding.data.vo.User
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
@@ -32,5 +31,9 @@ class RestApi {
 
     suspend fun getMenu(pathVariable: String) : GetMenu {
         return menuService.getDeferredMenu(pathVariable).await()
+    }
+
+    suspend fun postUser(requestBody: User) : HashMap<String, Any> {
+        return userService.postDeferredUser(requestBody).await()
     }
 }

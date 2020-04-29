@@ -5,15 +5,13 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    // for Camera - yeseul
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".Fooding"
@@ -25,18 +23,20 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".ui.Output2Activity">
+        <activity android:name=".ui.ProfileEditActivity">
+
+        </activity>
+        <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-<!--        <activity android:name=".ui.ImageActivity">-->
-<!--        </activity>-->
-        <activity android:name=".ui.OutputActivity"></activity>
-        <activity android:name=".ui.LoginActivity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        </activity> <!-- <activity android:name=".ui.ImageActivity"> -->
+        <!-- </activity> -->
+        <activity android:name=".ui.OutputActivity" />
+        <activity android:name=".ui.Output2Activity" />
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
@@ -53,6 +53,5 @@
 <!--                android:resource="@xml/file_paths"></meta-data>-->
 <!--        </provider>-->
     </application>
-
 
 </manifest>
