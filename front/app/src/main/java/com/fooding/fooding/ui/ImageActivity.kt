@@ -132,7 +132,6 @@ class ImageActivity : AppCompatActivity() {
         }
     }
 
-
     private fun launchGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"

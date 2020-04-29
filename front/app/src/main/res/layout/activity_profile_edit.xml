@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/et_email_signup"
+        android:id="@+id/tv_profile_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -26,7 +26,7 @@
         android:layout_below="@+id/iv_logo" />
 
     <EditText
-        android:id="@+id/et_nickname_signup"
+        android:id="@+id/et_profile_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -34,12 +34,26 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="15dp"
         android:padding="10dp"
-        android:layout_below="@+id/et_email_signup"
+        android:layout_below="@+id/iv_logo"
+        android:inputType="textEmailAddress"
+        android:hint="이메일"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:id="@+id/et_profile_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:layout_below="@+id/et_profile_email"
         android:inputType="text"
         android:hint="닉네임" />
 
     <EditText
-        android:id="@+id/et_age_signup"
+        android:id="@+id/et_profile_age"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -47,7 +61,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="15dp"
         android:padding="10dp"
-        android:layout_below="@+id/et_nickname_signup"
+        android:layout_below="@+id/et_profile_nickname"
         android:inputType="numberDecimal"
         android:hint="나이" />
 
@@ -60,18 +74,19 @@
         android:layout_marginTop="13dp"
         android:padding="10dp"
         android:orientation="horizontal"
-        android:layout_below="@+id/et_age_signup"
+        android:layout_below="@+id/et_profile_age"
         android:background="@android:color/white">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:text="성별"
             android:textSize="17sp"/>
 
         <Spinner
-            android:id="@+id/et_password_signup"
-            android:layout_width="50dp"
+            android:id="@+id/spinner_proflie_gender"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>

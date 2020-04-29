@@ -24,14 +24,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity android:name=".ui.ProfileEditActivity">
+
+        </activity>
+        <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".ui.LoginActivity">
-
         </activity> <!-- <activity android:name=".ui.ImageActivity"> -->
         <!-- </activity> -->
         <activity android:name=".ui.OutputActivity" />
