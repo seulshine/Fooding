@@ -19,6 +19,7 @@ import com.fooding.fooding.R
 //import com.gun0912.tedpermission.TedPermission
 import java.io.File
 import java.io.IOException
+import java.lang.reflect.Method
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
@@ -99,7 +100,7 @@ class ImageActivity : AppCompatActivity() {
                 photoFile?.also{
                     val photoURI : Uri = FileProvider.getUriForFile(
                         this,
-                        "com.example.food.fileprovider",
+                        "com.example.food.ui.fileprovider",
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
