@@ -1,21 +1,36 @@
 package com.fooding.fooding.ui
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.core.app.ActivityCompat
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fooding.fooding.R
 import com.fooding.fooding.adapter.FoodAdapter
+import com.fooding.fooding.data.restapi.RestApi
 import com.fooding.fooding.data.vo.Meal
 import com.fooding.fooding.ui.manager.MainManager
+import com.fooding.fooding.util.Dlog
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
+import java.io.File
+import java.io.IOException
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,8 +52,13 @@ class MainFragment : Fragment() {
     private var protein = 0.0
     private var fat = 0.0
 
+    val REQUEST_IMAGE_CAPTURE = 1
+    private var imageData: ByteArray? = null
+    lateinit var currentPhotoPath : String
+
     companion object {
         fun newInstance() = MainFragment()
+        private const val IMAGE_PICK_CODE = 999
     }
 
     override fun onCreateView(
@@ -104,8 +124,11 @@ class MainFragment : Fragment() {
         }
 
         fab_camera.setOnClickListener {
-            val intent = Intent(context, Output2Activity::class.java)
-            startActivity(intent)
+            startCapture()
+        }
+
+        fab_gallery.setOnClickListener {
+            launchGallery()
         }
 
         setNutrition()
@@ -165,5 +188,87 @@ class MainFragment : Fragment() {
 
         img_chart_fill.layoutParams.width = (330 * ratio * dp).toInt()
         img_chart_fill.requestLayout()
+    }
+
+    fun startCapture(){
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(requireActivity().packageManager)?.also {
+                val photoFile: File? = try{
+                    createImageFile()
+                } catch(ex: IOException){
+                    null
+                }
+                photoFile?.also{
+                    val photoURI : Uri = FileProvider.getUriForFile(
+                        requireContext(),
+                        "com.example.food.fileprovider",
+                        it
+                    )
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    requireActivity().startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                }
+            }
+        }
+    }
+
+    @Throws(IOException::class)
+    private fun createImageFile() : File {
+        val timeStamp : String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir : File? = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${timeStamp}_",
+            ".jpg",
+            storageDir
+        ).apply{
+            currentPhotoPath = absolutePath
+        }
+    }
+
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(requireActivity().packageManager)?.also {
+                requireActivity().startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+            }
+        }
+    }
+
+    private fun launchGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        requireActivity().startActivityForResult(
+            intent,
+            IMAGE_PICK_CODE
+        )
+    }
+
+    @Throws(IOException::class)
+    private fun createImageData(uri: Uri) {
+        val inputStream = requireActivity().contentResolver.openInputStream(uri)
+        inputStream?.buffered()?.use {
+            imageData = it.readBytes()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            val uri = data?.data
+            if (uri != null) {
+                createImageData(uri)
+            }
+        }
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK){
+            val file = File(currentPhotoPath)
+            if (Build.VERSION.SDK_INT < 28) {
+                val bitmap = MediaStore.Images.Media
+                    .getBitmap(requireActivity().contentResolver, Uri.fromFile(file))
+            }
+            else{
+                val decode = ImageDecoder.createSource(requireActivity().contentResolver,
+                    Uri.fromFile(file))
+                val bitmap = ImageDecoder.decodeBitmap(decode)
+            }
+        }
     }
 }

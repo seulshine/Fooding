@@ -14,11 +14,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
-import com.android.volley.Response
-import com.android.volley.toolbox.Volley
 import com.fooding.fooding.R
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.TedPermission
+//import com.gun0912.tedpermission.PermissionListener
+//import com.gun0912.tedpermission.TedPermission
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -42,7 +40,7 @@ class ImageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
 
-        settingPermission() // 권한체크 시작
+//        settingPermission() // 권한체크 시작
 
         imageView = findViewById(R.id.imageView)
 
@@ -56,37 +54,34 @@ class ImageActivity : AppCompatActivity() {
         }
         sendButton = findViewById(R.id.btnSend)
         sendButton.setOnClickListener {
-            uploadImage()
         }
     }
 
-
-
-    fun settingPermission(){
-        var permis = object  : PermissionListener {
-            //            어떠한 형식을 상속받는 익명 클래스의 객체를 생성하기 위해 다음과 같이 작성
-            override fun onPermissionGranted() {
-                Toast.makeText(this@ImageActivity, "권한 허가", Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-            override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
-                Toast.makeText(this@ImageActivity, "권한 거부", Toast.LENGTH_SHORT)
-                    .show()
-                ActivityCompat.finishAffinity(this@ImageActivity) // 권한 거부시 앱 종료
-            }
-        }
-
-        TedPermission.with(this)
-            .setPermissionListener(permis)
-            .setRationaleMessage("카메라 사진 권한 필요")
-            .setDeniedMessage("카메라 권한 요청 거부")
-            .setPermissions(
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-//                android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                android.Manifest.permission.CAMERA)
-            .check()
-    }
+//    fun settingPermission(){
+//        var permis = object  : PermissionListener {
+//            //            어떠한 형식을 상속받는 익명 클래스의 객체를 생성하기 위해 다음과 같이 작성
+//            override fun onPermissionGranted() {
+//                Toast.makeText(this@ImageActivity, "권한 허가", Toast.LENGTH_SHORT)
+//                    .show()
+//            }
+//
+//            override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+//                Toast.makeText(this@ImageActivity, "권한 거부", Toast.LENGTH_SHORT)
+//                    .show()
+//                ActivityCompat.finishAffinity(this@ImageActivity) // 권한 거부시 앱 종료
+//            }
+//        }
+//
+//        TedPermission.with(this)
+//            .setPermissionListener(permis)
+//            .setRationaleMessage("카메라 사진 권한 필요")
+//            .setDeniedMessage("카메라 권한 요청 거부")
+//            .setPermissions(
+//                android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+////                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+//                android.Manifest.permission.CAMERA)
+//            .check()
+//    }
 
 
     val REQUEST_IMAGE_CAPTURE = 1
@@ -146,31 +141,6 @@ class ImageActivity : AppCompatActivity() {
         )
     }
 
-    private fun uploadImage() {
-        imageData?: return
-        val request = object : VolleyFileUploadRequest(
-            Method.POST,
-            postURL,
-            Response.Listener {
-                println("response is: $it")
-            },
-            Response.ErrorListener {
-                println("error is: $it")
-            }
-        ) {
-            override fun getByteData(): MutableMap<String, FileDataPart> {
-                var params = HashMap<String, FileDataPart>()
-                params["imageFile"] = FileDataPart(
-                    "image",
-                    imageData!!,
-                    "jpeg"
-                )
-                return params
-            }
-        }
-        Volley.newRequestQueue(this).add(request)
-    }
-
     @Throws(IOException::class)
     private fun createImageData(uri: Uri) {
         val inputStream = contentResolver.openInputStream(uri)
@@ -180,7 +150,6 @@ class ImageActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             val uri = data?.data
@@ -188,9 +157,7 @@ class ImageActivity : AppCompatActivity() {
                 imageView.setImageURI(uri)
                 createImageData(uri)
             }
-
-        }
-        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK){
+        } else if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             val file = File(currentPhotoPath)
             if (Build.VERSION.SDK_INT < 28) {
                 val bitmap = MediaStore.Images.Media

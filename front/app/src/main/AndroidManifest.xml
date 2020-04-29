@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.fooding.fooding">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    // for Camera - yeseul
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".Fooding"
@@ -21,36 +20,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.LoginActivity">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="m">
+        <activity android:name=".ui.ProfileEditActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".ui.ImageActivity">-->
-<!--        </activity>-->
-        <activity android:name=".ui.OutputActivity"></activity>
-        <activity android:name=".ui.Output2Activity"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".ui.LoginActivity">
+
+        </activity> <!-- <activity android:name=".ui.ImageActivity"> -->
+        <!-- </activity> -->
+        <activity android:name=".ui.OutputActivity" />
+        <activity android:name=".ui.Output2Activity" />
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-
-<!--        <provider-->
-<!--            android:name="androidx.core.content.FileProvider"-->
-<!--            android:authorities="com.example.food.fileprovider"-->
-<!--            android:exported="false"-->
-<!--            android:grantUriPermissions="true">-->
-<!--            <meta-data-->
-<!--                android:name="android.support.FILE_PROVIDER_PATHS"-->
-<!--                android:resource="@xml/file_paths"></meta-data>-->
-<!--        </provider>-->
-
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.food.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
-
 
 </manifest>
