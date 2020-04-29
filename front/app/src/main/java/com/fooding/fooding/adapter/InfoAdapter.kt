@@ -1,4 +1,4 @@
-package com.fooding.fooding.Adapter
+package com.fooding.fooding.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

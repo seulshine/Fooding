@@ -4,6 +4,7 @@ import com.fooding.fooding.data.service.MenuService
 import com.fooding.fooding.data.service.UserService
 import com.fooding.fooding.data.vo.GetMenu
 import com.fooding.fooding.data.vo.PostMenu
+import com.fooding.fooding.util.Dlog
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
@@ -11,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 class RestApi {
-    private val menuService: MenuService
+    val menuService: MenuService
     private val userService: UserService
 
     init {
@@ -20,12 +21,13 @@ class RestApi {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
-        menuService = retrofit.create()
+        menuService = retrofit.create(MenuService::class.java)
         userService = retrofit.create()
     }
 
-    suspend fun postMenu(requestBody: PostMenu) : HashMap<String, String> {
-        return menuService.postDeferredMenu(requestBody).await()
+    suspend fun postMenu(requestBody: PostMenu) : HashMap<String, Any> {
+        Dlog.d("here")
+        return menuService.postDeferredMenuAsync(requestBody).await()
     }
 
     suspend fun getMenu(pathVariable: String) : GetMenu {
