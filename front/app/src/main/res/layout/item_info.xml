@@ -11,28 +11,34 @@
         android:orientation="horizontal">
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="80dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             tools:text="TITLE"
             />
         <TextView
             android:id="@+id/tv_calorie"
-            android:layout_width="70dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             tools:text="Content"/>
         <TextView
-            android:id="@+id/tv_each_quantity"
+            android:id="@+id/tv_carbs"
             android:layout_width="50dp"
-            android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
-            tools:text="TITLE"
-            />
+            android:layout_marginLeft="5dp"
+            tools:text="Content"/>
         <TextView
-            android:id="@+id/tv_total_calorie"
-            android:layout_width="80dp"
+            android:id="@+id/tv_proteins"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
+            tools:text="Content"/>
+
+        <TextView
+            android:id="@+id/tv_fats"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             tools:text="Content"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
