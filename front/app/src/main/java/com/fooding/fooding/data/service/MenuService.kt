@@ -10,7 +10,7 @@ interface MenuService {
 
     @POST("api/menu")
     @Headers("accept: application/json", "content-type: application/json")
-    fun postDeferredMenuAsync(@Body JsonObject: PostMenu) : Deferred<HashMap<String, Any>>
+    fun postDeferredMenuAsync(@Body requestBody: PostMenu) : Deferred<HashMap<Any, Any>>
 
     @GET("api/user/{email}")
     fun getDeferredMenu(@Path("email") pathVariable: String) : Deferred<GetMenu>

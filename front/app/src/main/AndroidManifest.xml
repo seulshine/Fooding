@@ -32,11 +32,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- <activity android:name=".ui.ImageActivity"> -->
-        <!-- </activity> -->
-        <activity android:name=".ui.OutputActivity" />
-        <activity android:name=".ui.Output2Activity" />
-        <activity android:name=".MainActivity" />
+        </activity>
+<!--        <activity android:name=".ui.ImageActivity">-->
+<!--        </activity>-->
+        <activity android:name=".ui.LoginActivity"></activity>
+        <activity android:name=".MainActivity"></activity>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
