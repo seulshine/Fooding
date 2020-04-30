@@ -1,5 +1,6 @@
 package com.fooding.fooding.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,9 +12,12 @@ import com.fooding.fooding.MainActivity
 import com.fooding.fooding.R
 import com.fooding.fooding.adapter.InfoAdapter
 import com.fooding.fooding.data.restapi.RestApi
+import com.fooding.fooding.data.vo.GetImageInfo
+import com.fooding.fooding.data.vo.Info
 import com.fooding.fooding.data.vo.PostFood
 import com.fooding.fooding.data.vo.PostMenu
 import com.fooding.fooding.util.Dlog
+import kotlinx.android.synthetic.main.item_main_food_body.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -34,10 +38,27 @@ class Output2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_output2)
 
         viewManager = LinearLayoutManager(this)
+
+        val pref = applicationContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
+        var email = pref.getString("email", null)
+
+
         var params = ArrayList<PostFood>()
 
-        params.add(PostFood("김치찌개", 360.0, 20.0, 20.0, 20.0))
-        params.add(PostFood("밥", 150.0, 10.0, 10.0, 10.0))
+        var temp = intent.getParcelableExtra<GetImageInfo>("foodInfo")
+
+        var foods = temp.result
+
+        for (info in foods) {
+            var name = info.FoodName
+            var cal = info.Calories_cal
+            var carbs = info.Carbs_g
+            var protein = info.Protein_g
+            var fats = info.Fat_g
+
+            params.add(PostFood(name, cal, carbs, fats, protein))
+        }
+
         viewAdapter = InfoAdapter(params) // 이후 paraemter로 data 넘겨줌
 
         recyclerView = findViewById<RecyclerView>(R.id.rv_info_list).apply {
@@ -53,12 +74,15 @@ class Output2Activity : AppCompatActivity() {
 
         }
 
+
+
         uploadButton = findViewById(R.id.btn_upload)
         uploadButton.setOnClickListener{
-            var foods = ArrayList<PostFood>()
+
+
             var datestr = simpleDate.format(Calendar.getInstance().getTime());
-            foods.add(PostFood("치킨", 360.0, 20.0, 20.0, 20.0))
-            var temp = PostMenu("unsug@102", foodType, datestr, foods)
+
+            var temp = PostMenu(email.toString(), foodType, datestr, params)
 
             requestMenu(temp)
 

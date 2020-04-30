@@ -35,7 +35,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.OutputActivity" />
         <activity android:name=".ui.Output2Activity">
 
         </activity>
@@ -48,7 +47,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.food.fileprovider"
+            android:authorities="com.fooding.fooding.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
