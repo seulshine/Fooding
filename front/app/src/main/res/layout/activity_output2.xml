@@ -38,7 +38,7 @@
             android:layout_height="40dp"
             android:background="@drawable/button"
             android:textColor="#ffffff"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="85dp"
             android:text="업로드"
             />
     </LinearLayout>

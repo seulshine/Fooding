@@ -34,7 +34,6 @@
         </activity>
 <!--        <activity android:name=".ui.ImageActivity">-->
 <!--        </activity>-->
-        <activity android:name=".ui.OutputActivity"></activity>
         <activity android:name=".ui.LoginActivity"></activity>
         <activity android:name=".MainActivity"></activity>
 

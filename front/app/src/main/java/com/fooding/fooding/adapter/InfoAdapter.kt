@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fooding.fooding.R
 import com.fooding.fooding.data.vo.PostFood
-import com.fooding.fooding.vo.FoodInfo2
 import kotlinx.android.synthetic.main.item_info.view.*
 
 class InfoAdapter(items:ArrayList<PostFood>) : RecyclerView.Adapter<InfoAdapter.MainViewHolder>() {
