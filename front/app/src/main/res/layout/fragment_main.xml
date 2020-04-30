@@ -5,17 +5,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp"
     tools:context=".ui.MainFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="@color/colorPrimary"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_main_datepicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout_main">
 
         <ImageView
             android:id="@+id/img_main_date_prev"
@@ -57,6 +81,8 @@
         android:layout_height="200dp"
         android:padding="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:cardCornerRadius="10dp"
         android:elevation="0dp"
         app:cardBackgroundColor="@color/colorPrimary"
@@ -96,11 +122,11 @@
                     android:textSize="30sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorBackground"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_chart_user_set_calories"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_chart_recommended_calories"
                     app:layout_constraintBaseline_toBaselineOf="@id/tv_chart_kcal" />
 
                 <TextView
-                    android:id="@+id/tv_chart_user_set_calories"
+                    android:id="@+id/tv_chart_recommended_calories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="7dp"
@@ -247,6 +273,8 @@
         android:id="@+id/rec_main_food"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintTop_toBottomOf="@id/card_main_daily_nutrition"
         app:layout_constraintBottom_toTopOf="@+id/fab_main"
         app:layout_constraintStart_toStartOf="parent"
@@ -261,7 +289,7 @@
         android:visibility="invisible"
         app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/ic_camera_white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fab_add"
         app:layout_constraintBottom_toTopOf="@+id/fab_gallery"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -272,7 +300,7 @@
         android:visibility="invisible"
         app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/ic_gallery_white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fab_add"
         app:layout_constraintBottom_toTopOf="@+id/fab_add"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -283,13 +311,15 @@
         android:visibility="invisible"
         app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/ic_add_white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/fab_main"
         app:layout_constraintBottom_toTopOf="@id/fab_main"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
         app:backgroundTint="@color/colorPrimary"
         app:srcCompat="@drawable/ic_add_white"
         app:layout_constraintEnd_toEndOf="parent"

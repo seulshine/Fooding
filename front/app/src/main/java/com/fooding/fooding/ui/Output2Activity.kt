@@ -52,8 +52,8 @@ class Output2Activity : AppCompatActivity() {
         uploadButton = findViewById(R.id.btn_upload)
         uploadButton.setOnClickListener{
             var foods = ArrayList<PostFood>()
-            foods.add(PostFood("치킨", 360.0, 20.0, 20.0, 20.0))
-            var temp = PostMenu("test", simpleDate.toString(), foodType, foods)
+            foods.add(PostFood("rice", 360.0, 20.0, 20.0, 20.0))
+            var temp = PostMenu("kundera@kakao.com", foodType, null, foods.toList())
 
             Dlog.d("여기까지 들어오나")
 
@@ -129,7 +129,7 @@ class Output2Activity : AppCompatActivity() {
 //                        Toast.makeText(this@Output2Activity, "실패", Toast.LENGTH_LONG)
 //                    }
                 } catch (e: Throwable) {
-
+                    Dlog.e(e.message.toString())
                 }
             }
         }
