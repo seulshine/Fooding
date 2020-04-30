@@ -119,7 +119,7 @@ class Output2Activity : AppCompatActivity() {
                     }
 
                 } catch (e: Throwable) {
-
+                    Dlog.e(e.message.toString())
                 }
             }
         }

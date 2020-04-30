@@ -8,5 +8,6 @@ data class User(
     val name: String,
     val user_email: String,
     val age: Int,
-    var post_url: String
+    val gender: String,
+    var post_url: String? = null
 ) : Parcelable
