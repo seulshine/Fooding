@@ -32,9 +32,10 @@ class LoginActivity : AppCompatActivity() {
             UserManagement.getInstance().me(object : MeV2ResponseCallback() {
                 override fun onSuccess(result: MeV2Response?) {
                     checkNotNull(result) { "session response null" }
-                    val intent = Intent(applicationContext, MainActivity::class.java)
-                    intent.putExtra("nickname", result.nickname)
-                    intent.putExtra("profileImage", result.profileImagePath)
+                    val intent = Intent(applicationContext, ProfileEditActivity::class.java)
+                    intent.putExtra("nickname", result.kakaoAccount.profile.nickname)
+                    intent.putExtra("profileImage", result.kakaoAccount.profile.profileImageUrl)
+                    intent.putExtra("email", result.kakaoAccount.email)
                     startActivity(intent)
                 }
 
