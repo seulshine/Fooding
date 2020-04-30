@@ -1,6 +1,7 @@
 package com.fooding.fooding
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
 import com.fooding.fooding.ui.MainFragment
+import com.fooding.fooding.ui.ProfileEditActivity
 import com.kakao.util.helper.Utility.getPackageInfo
 import kotlinx.android.synthetic.main.activity_main.*
 import java.security.MessageDigest
@@ -27,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setSupportActionBar(toolbar_main)
         moveToFragment(MainFragment())
     }
 
@@ -35,18 +36,6 @@ class MainActivity : AppCompatActivity() {
         val fragmentTrans = supportFragmentManager.beginTransaction()
         fragmentTrans.replace(R.id.fragment_container, fragment)
         fragmentTrans.commit()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_edit_profile -> { Toast.makeText(applicationContext, "프로필 수정", Toast.LENGTH_SHORT).show() }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun getKakaoHashKey(context: Context): String? {

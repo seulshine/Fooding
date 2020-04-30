@@ -5,10 +5,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Info(
-    val name: String,
-    val criteria: String? = null,
-    val calories_cal: Double,
-    val carbs_g : Double,
-    val fat_g : Double,
-    val protein_g : Double
+    val FoodName: String,
+    val FoodName_kor: String,
+    val Criteria: String? = null,
+    val Calories_cal: Double,
+    val Carbs_g : Double,
+    val Fat_g : Double,
+    val Protein_g : Double
 ) : Parcelable

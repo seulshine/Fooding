@@ -10,6 +10,7 @@ import android.util.Base64
 import android.util.Base64.NO_WRAP
 import com.fooding.fooding.MainActivity
 import com.fooding.fooding.R
+import com.fooding.fooding.ui.manager.MainManager
 import com.fooding.fooding.util.Dlog
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
@@ -32,10 +33,13 @@ class LoginActivity : AppCompatActivity() {
             UserManagement.getInstance().me(object : MeV2ResponseCallback() {
                 override fun onSuccess(result: MeV2Response?) {
                     checkNotNull(result) { "session response null" }
+                    val pref = applicationContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit()
+                    pref.putString("email", result.kakaoAccount.email)
+                    pref.putString("nickname", result.kakaoAccount.profile.nickname)
+                    pref.putInt("age", 0)
+                    pref.putString("gender", null)
+                    pref.apply()
                     val intent = Intent(applicationContext, ProfileEditActivity::class.java)
-                    intent.putExtra("nickname", result.kakaoAccount.profile.nickname)
-                    intent.putExtra("profileImage", result.kakaoAccount.profile.profileImageUrl)
-                    intent.putExtra("email", result.kakaoAccount.email)
                     startActivity(intent)
                 }
 
@@ -54,8 +58,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        Session.getCurrentSession().addCallback(sessionCallback)
-        Session.getCurrentSession().checkAndImplicitOpen()
+        val pref = this.getSharedPreferences("PREFS", Context.MODE_PRIVATE)
+        if (pref.getString("email", null) != null) {
+            startActivity(Intent(this, MainActivity::class.java))
+        } else {
+            Session.getCurrentSession().addCallback(sessionCallback)
+//            Session.getCurrentSession().checkAndImplicitOpen()
+        }
+//        Session.getCurrentSession().addCallback(sessionCallback)
+//        Session.getCurrentSession().checkAndImplicitOpen()
     }
 
     override fun onDestroy() {
