@@ -50,7 +50,7 @@ class Output2Activity : AppCompatActivity() {
         var foods = temp.result
 
         for (info in foods) {
-            var name = info.FoodName
+            var name = info.FoodName_kor
             var cal = info.Calories_cal
             var carbs = info.Carbs_g
             var protein = info.Protein_g
