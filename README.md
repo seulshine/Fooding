@@ -27,23 +27,33 @@ Object Detection을 활용하여 사진 속 음식을 식별하고, 음식 정�
 
 
 
-## :tomato: 핵심 기능
+## :fooding: 핵심 기능
 
-:one: **음식 촬영**: 측정하고자 하는 음식 촬영
+:one: **음식 판별**: Object Detection을 사용해 음식 판별
 
-<img src="assets/KakaoTalk_20200410_121542020.png" width="30%"/> 
-
-
-
-:two: **음식 판별**: Object Detection을 사용해 음식 판별
-
-<img src="assets/KakaoTalk_20200410_121542239.png" width="30%" /> 
+<img src="assets/사진 분석.gif" width="30%"/> 
 
 
 
-:three: **음식 정보 확인**: 열량 측정 및 일일 섭취량 확인
+:two: **식단 추가**: 음식 이름을 검색하여 식단 추가
 
-<img src="assets/KakaoTalk_20200410_121542465.png" width="30%" /> 
+
+<img src="assets/검색해서 추가.gif" width="30%"/> 
+
+
+:three: **메뉴 삭제**: 해당 일자에 대한 메뉴를 선택하여 삭제
+
+<img src="assets/메뉴 삭제.gif" width="30%" /> 
+
+
+:four **날짜 이동**: 원하는 날짜에 대한 식단 확인 및 추가
+
+<img src="assets/날짜 이동.gif" width="30%" /> 
+
+
+:five: **로그인**: 카카오 계정을 이용한 로그인
+
+<img src="assets/로그인.gif" width="30%" /> 
 
 
 
